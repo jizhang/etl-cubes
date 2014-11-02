@@ -1,0 +1,79 @@
+{
+  "cubes": [{
+    "name": "da_etl_job_cube",
+    "label": "ETL脚本运行明细",
+    "dimensions": ["cal_dt", "owner", "category", "layer", "level", "job_type", "operation", "status", "duration_type"],
+    "measures": [{
+      "name": "duration",
+      "aggregates": ["sum", "min", "max", "avg"]
+    }, {
+      "name": "7day_average_duration",
+      "aggregates": ["sum", "min", "max", "avg"]
+    }, {
+      "name": "7day_average_percent",
+      "aggregates": ["min", "max", "avg"]
+    }],
+    "aggregates": [{
+      "name": "record_cound",
+      "label": "脚本数",
+      "function": "count"
+    }],
+    "mappings": {
+      "cal_dt.year": {"column": "cal_dt", "extract": "year"},
+      "cal_dt.month": {"column": "cal_dt", "extract": "month"},
+      "cal_dt.day": {"column": "cal_dt", "extract": "day"}
+    }
+  }],
+
+  "dimensions": [{
+    "name": "cal_dt",
+    "label": "日期",
+    "role": "time",
+    "levels": [{
+      "name": "year",
+      "label": "年",
+      "info": {
+        "cv-datefilter-field": "year"
+      }
+    }, {
+      "name": "month",
+      "label": "月",
+      "info": {
+        "cv-datefilter-field": "month"
+      }
+    }, {
+      "name": "day",
+      "label": "日",
+      "info": {
+        "cv-datefilter-field": "day"
+      }
+    }],
+    "info": {
+      "cv-datefilter": true
+    }
+  }, {
+    "name": "owner",
+    "label": "创建人"
+  }, {
+    "name": "category",
+    "label": "业务线"
+  }, {
+    "name": "layer",
+    "label": "层次"
+  }, {
+    "name": "level",
+    "label": "级别"
+  }, {
+    "name": "job_type",
+    "label": "脚本类型"
+  }, {
+    "name": "operation",
+    "label": "当日操作"
+  }, {
+    "name": "status",
+    "label": "运行状态"
+  }, {
+    "name": "duration_type",
+    "label": "运行时间范围"
+  }]
+}
