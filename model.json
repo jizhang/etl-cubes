@@ -1,0 +1,24 @@
+{
+  "cubes": [{
+    "name": "da_etl_job",
+    "label": "ETL脚本运行数量",
+    "dimensions": ["owner"],
+    "measures": ["jobs"],
+    "aggregates": [{
+      "name": "jobs_sum",
+      "label": "脚本数",
+      "function": "sum",
+      "measure": "jobs"
+    }]
+  }],
+
+  "dimensions": [{
+    "name": "owner",
+    "label": "创建人"
+  }],
+
+  "measures": [{
+    "name": "jobs",
+    "label": "脚本数"
+  }]
+}
