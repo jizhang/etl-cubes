@@ -2,23 +2,103 @@
   "cubes": [{
     "name": "da_etl_job",
     "label": "ETL脚本运行数量",
-    "dimensions": ["owner"],
-    "measures": ["jobs"],
+    "dimensions": ["cal_dt", "owner", "category", "layer", "level"],
+    "measures": ["jobs", "exception_jobs", "5min_jobs", "15min_jobs", "30min_jobs", "created_jobs", "updated_jobs", "deleted_jobs", "inc30_jobs", "dec30_jobs"],
     "aggregates": [{
       "name": "jobs_sum",
       "label": "脚本数",
       "function": "sum",
       "measure": "jobs"
-    }]
+    }, {
+      "name": "exception_jobs_sum",
+      "label": "出错脚本数",
+      "function": "sum",
+      "measure": "exception_jobs"
+    }, {
+      "name": "5min_jobs_sum",
+      "label": "运行时间小于5分钟",
+      "function": "sum",
+      "measure": "5min_jobs"
+    }, {
+      "name": "15min_jobs_sum",
+      "label": "运行时间小于15分钟",
+      "function": "sum",
+      "measure": "15min_jobs"
+    }, {
+      "name": "30min_jobs_sum",
+      "label": "运行时间大于15分钟",
+      "function": "sum",
+      "measure": "30min_jobs"
+    }, {
+      "name": "created_jobs_sum",
+      "label": "新增脚本数",
+      "function": "sum",
+      "measure": "created_jobs"
+    }, {
+      "name": "updated_jobs_sum",
+      "label": "更新脚本数",
+      "function": "sum",
+      "measure": "updated_jobs"
+    }, {
+      "name": "deleted_jobs_sum",
+      "label": "下线脚本数",
+      "function": "sum",
+      "measure": "deleted_jobs"
+    }, {
+      "name": "inc30_jobs_sum",
+      "label": "运行时间增加30%",
+      "function": "sum",
+      "measure": "inc30_jobs"
+    }, {
+      "name": "dec30_jobs_sum",
+      "label": "运行时间减少30%",
+      "function": "sum",
+      "measure": "dec30_jobs"
+    }],
+    "mappings": {
+      "cal_dt.year": {"column": "cal_dt", "extract": "year"},
+      "cal_dt.month": {"column": "cal_dt", "extract": "month"},
+      "cal_dt.day": {"column": "cal_dt", "extract": "day"}
+    }
   }],
 
   "dimensions": [{
+    "name": "cal_dt",
+    "label": "日期",
+    "role": "time",
+    "levels": [{
+      "name": "year",
+      "label": "年",
+      "info": {
+        "cv-datefilter-field": "year"
+      }
+    }, {
+      "name": "month",
+      "label": "月",
+      "info": {
+        "cv-datefilter-field": "month"
+      }
+    }, {
+      "name": "day",
+      "label": "日",
+      "info": {
+        "cv-datefilter-field": "day"
+      }
+    }],
+    "info": {
+      "cv-datefilter": true
+    }
+  }, {
     "name": "owner",
     "label": "创建人"
-  }],
-
-  "measures": [{
-    "name": "jobs",
-    "label": "脚本数"
+  }, {
+    "name": "category",
+    "label": "业务线"
+  }, {
+    "name": "layer",
+    "label": "层次"
+  }, {
+    "name": "level",
+    "label": "级别"
   }]
 }
