@@ -2,7 +2,7 @@
   "cubes": [{
     "name": "da_etl_job_cube",
     "label": "ETL脚本运行明细",
-    "dimensions": ["cal_dt", "owner", "category", "layer", "level", "job_type", "operation", "status", "duration_type", "7day_average_percent_type"],
+    "dimensions": ["cal_dt", "module_name", "owner", "category", "layer", "level", "job_type", "operation", "status", "duration_type", "7day_average_percent_type"],
     "measures": [{
       "name": "duration",
       "aggregates": ["sum", "min", "max", "avg"]
@@ -14,7 +14,7 @@
       "aggregates": ["min", "max", "avg"]
     }],
     "aggregates": [{
-      "name": "record_cound",
+      "name": "record_count",
       "label": "脚本数",
       "function": "count"
     }],
@@ -51,6 +51,9 @@
     "info": {
       "cv-datefilter": true
     }
+  }, {
+    "name": "module_name",
+    "label": "脚本名称"
   }, {
     "name": "owner",
     "label": "创建人"
