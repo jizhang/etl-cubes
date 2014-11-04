@@ -5,18 +5,29 @@
     "dimensions": ["cal_dt", "module_name", "owner", "category", "layer", "level", "job_type", "operation", "status", "duration_type", "7day_average_percent_type"],
     "measures": [{
       "name": "duration",
+      "label": "运行时长",
       "aggregates": ["sum", "min", "max", "avg"]
     }, {
       "name": "7day_average_duration",
+      "label": "7天平均时长",
       "aggregates": ["sum", "min", "max", "avg"]
     }, {
       "name": "7day_average_percent",
+      "label": "时长增长",
       "aggregates": ["min", "max", "avg"]
+    }, {
+      "name": "module_name",
+      "aggregates": ["count_distinct"]
     }],
     "aggregates": [{
       "name": "record_count",
       "label": "脚本数",
       "function": "count"
+    }, {
+      "name": "module_name_count_distinct",
+      "label": "脚本数（去重）",
+      "function": "count_distinct",
+      "measure": "module_name"
     }],
     "mappings": {
       "cal_dt.year": {"column": "cal_dt", "extract": "year"},
